@@ -1,17 +1,14 @@
 package hobbyinvestor.task;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hobbyinvestor.client.FinnhubStocksClient;
 import hobbyinvestor.model.StockSymbol;
-import hobbyinvestor.model.StockSymbolSearchResults;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
 
 @Slf4j
 @Service
