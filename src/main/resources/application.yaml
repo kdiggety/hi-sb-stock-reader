@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: stock-reader
+  cloud:
+    openfeign:
+      client:
+        config:
+          finnhub-client:
+            url: https://finnhub.io/api/v1/stock/
+hobbyinvestor:
+  tasks:
+    stock-reader:
+      cron: "*/30 * * * * *"
