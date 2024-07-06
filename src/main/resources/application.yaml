@@ -9,5 +9,7 @@ spring:
             url: https://finnhub.io/api/v1/stock/
 hobbyinvestor:
   tasks:
-    stock-reader:
-      cron: "*/30 * * * * *"
+    stock-symbols:
+      cron: "0 */3 * * * *"
+    stock-symbols-financials:
+      cron: "0 25 */17 * * *"
