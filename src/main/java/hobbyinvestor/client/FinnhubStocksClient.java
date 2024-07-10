@@ -11,8 +11,17 @@ public interface FinnhubStocksClient {
         String getStockSymbols(@RequestParam(value = "exchange") String exchange,
                                   @RequestParam(value = "token") String apikey);
 
+    @GetMapping("/profile2?symbol={symbol}")
+    String getCompanyProfile(@PathVariable() String symbol, @RequestParam(value = "token") String apikey);
+
     @GetMapping("/metric?symbol={symbol}")
     String getStockSymbolFinancials(@PathVariable() String symbol,
-                           @RequestParam(value = "metric") String metric,
-                           @RequestParam(value = "token") String apikey);
+                                    @RequestParam(value = "metric") String metric,
+                                    @RequestParam(value = "token") String apikey);
+
+    @GetMapping("/company-news?symbol={symbol}&from={from}&to={to}")
+    String getCompanyNews(@PathVariable() String symbol,
+                          @PathVariable() String from,
+                          @PathVariable() String to,
+                          @RequestParam(value = "token") String apikey);
 }

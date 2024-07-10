@@ -7,9 +7,15 @@ spring:
         config:
           finnhub-client:
             url: https://finnhub.io/api/v1/stock/
+  kafka:
+    bootstrap-servers: 192.168.1.238:29093
 hobbyinvestor:
   tasks:
     stock-symbols:
       cron: "0 */3 * * * *"
-    stock-symbols-financials:
-      cron: "0 25 */17 * * *"
+    company-details:
+      cron: "0 */5 * * * *"
+  topic-names:
+    companyProfileUpdateTopic: companyProfileUpdate
+    companyFinancialsUpdateTopic: companyFinancialsUpdate
+    companyNewsUpdateTopic: companyNewsUpdate
