@@ -45,42 +45,6 @@ public class StockReaderTask {
         log.info("Done.");
     }
 
-    /*@Scheduled(cron = "${hobbyinvestor.tasks.stock-symbols-financials.cron}")
-    public void processStockSymbolsFinancials() throws IOException {
-        log.info("Starting stock symbol financials reader task...");
-
-        Iterable<StockSymbol> stockSymbols = stockSymbolPagingRepository.findAll();
-        if (stockSymbols != null) {
-            StreamSupport.stream(stockSymbols.spliterator(), false).forEach(stockSymbol -> {
-                String response =
-                        finnhubStocksClient.getStockSymbolFinancials(stockSymbol.getSymbol(),
-                                ALL_METRICS, FINNHUB_ACCESS_KEY);
-
-                StockSymbolFinancials stockSymbolFinancials;
-                try {
-                    JsonNode jsonNode = objectMapper.readTree(response);
-
-                    stockSymbolFinancials =
-                            objectMapper.treeToValue(jsonNode.get("metric"), StockSymbolFinancials.class);
-                    stockSymbolFinancials.setSymbol(stockSymbol.getSymbol());
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-
-                log.info(String.format("Saving '%s' (%s) financials to Redis...",
-                        stockSymbol.getDescription(), stockSymbol.getSymbol()));
-                stockSymbolFinancialsRepository.save(stockSymbolFinancials);
-
-                try {
-                    Thread.sleep(ARBITRARY_SLEEP_MILLIS);
-                } catch (InterruptedException e) {
-                    log.error("Rude awakening! ...", e);
-                }
-            });
-        }
-        log.info("Done.");
-    }*/
-
     @Scheduled(cron = "${hobbyinvestor.tasks.company-details.cron}")
     public void batchProcessCompanyDetails() {
         log.info("Starting company details processing task...");
