@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(value = "finnhub-client")
 public interface FinnhubStocksClient {
-    @GetMapping("/symbol")
+    @GetMapping("/stock/symbol")
         String getStockSymbols(@RequestParam(value = "exchange") String exchange,
                                   @RequestParam(value = "token") String apikey);
 
-    @GetMapping("/profile2?symbol={symbol}")
+    @GetMapping("/stock/profile2?symbol={symbol}")
     String getCompanyProfile(@PathVariable() String symbol, @RequestParam(value = "token") String apikey);
 
-    @GetMapping("/metric?symbol={symbol}")
+    @GetMapping("/stock/metric?symbol={symbol}")
     String getStockSymbolFinancials(@PathVariable() String symbol,
                                     @RequestParam(value = "metric") String metric,
                                     @RequestParam(value = "token") String apikey);

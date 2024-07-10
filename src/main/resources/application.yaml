@@ -6,7 +6,7 @@ spring:
       client:
         config:
           finnhub-client:
-            url: https://finnhub.io/api/v1/stock/
+            url: https://finnhub.io/api/v1/
   kafka:
     bootstrap-servers: 192.168.1.238:29093
 hobbyinvestor:
