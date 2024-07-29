@@ -8,13 +8,13 @@ spring:
           finnhub-client:
             url: https://finnhub.io/api/v1/
   kafka:
-    bootstrap-servers: 192.168.1.238:29093
+    bootstrap-servers: macdaddy.local:29093
 hobbyinvestor:
   tasks:
     stock-symbols:
       cron: "0 */3 * * * *"
     company-details:
-      cron: "0 */5 * * * *"
+      cron: "*/30 * * * * *"
   topic-names:
     companyProfileUpdateTopic: companyProfileUpdate
     companyFinancialsUpdateTopic: companyFinancialsUpdate
