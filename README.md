@@ -9,11 +9,11 @@ This process runs separate cron schedules for each category of data.
 
 The targets for each data category is as follows:
 
-| Data Category                     | Target                               |
-|-----------------------------------|--------------------------------------|
-| Stock Symbols                     | Redis cache (StockSymbol)            |
-| Stock Symbol Financials           | Redis cache (StockSymbolFincancials) |
-| Stock Symbol Prices (Time Series) | Kafka topic (StockSymbolPrices)      |
+| Data Category           | Target                               |
+|-------------------------|--------------------------------------|
+| Stock Symbols           | Redis cache (StockSymbol)            |
+| Stock Symbol Financials | Kafka topic (companyFinancialsUpdate) |
+| Stock Symbol News       | Kafka topic (companyNewsUpdate)      |
 
 Example Redis Commands:
 1. SMEMBERS StockSymbol
