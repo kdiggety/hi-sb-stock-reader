@@ -41,7 +41,7 @@ public class StockReaderTask {
     private final KafkaTopicConfigProperties kafkaTopicConfigProperties;
     @Qualifier("redisTemplateNumbers") private final RedisTemplate redisTemplate;
 
-    //@Scheduled(cron = "${hobbyinvestor.tasks.stock-symbols.cron}")
+    /*@Scheduled(cron = "${hobbyinvestor.tasks.stock-symbols.cron}")
     public void processStockSymbols() throws IOException {
         log.info("Starting stock symbols reader task...");
         String response = finnhubStocksClient.getStockSymbols("US", FINNHUB_ACCESS_KEY);
@@ -49,7 +49,7 @@ public class StockReaderTask {
         log.info("Saving {} symbols to Redis...", symbols.length);
         stockSymbolRepository.saveAll(List.of(symbols));
         log.info("Done.");
-    }
+    }*/
 
     @Scheduled(cron = "${hobbyinvestor.tasks.company-details.cron}")
     public void batchProcessCompanyDetails() {
@@ -70,8 +70,9 @@ public class StockReaderTask {
         // Get the stock symbols for the current page
         Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by("symbol"));
         Page<StockSymbol> page = stockSymbolPagingRepository.findAll(pageable);
+        int totalPages = page.getTotalPages();
         log.info("Processing {} stock symbols", page.getSize());
-        log.info("Total page count is {}", page.getTotalPages());
+        log.info("Total page count is {}", totalPages);
         page.stream().forEach(stockSymbol -> {
             log.info("Processing company stock symbol {}", stockSymbol);
             CompletableFuture.allOf(
@@ -97,8 +98,8 @@ public class StockReaderTask {
         });
 
         // Increment the page number
-        int nextPageNumber = pageNumber + 1;
-        log.info("Incrementing Page number to {}", nextPageNumber);
+        int nextPageNumber = (pageNumber + 1) % totalPages;
+        log.info("Next Page number is {}", nextPageNumber);
         redisTemplate.opsForValue().set(HOBBYINVESTOR_TASK_STOCK_SYMBOLS_PAGE_NUMBER, String.valueOf(nextPageNumber));
         log.info("Done.");
     }

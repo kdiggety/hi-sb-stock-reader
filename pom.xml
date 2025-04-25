@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>hobbyinvestor</groupId>
-    <artifactId>stock-reader</artifactId>
+    <artifactId>hi-sb-stock-processor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>stock-reader</name>
-    <description>stock-reader</description>
+    <name>hi-sb-stock-processor</name>
+    <description>hi-sb-stock-processor</description>
     <url/>
     <licenses>
         <license/>
